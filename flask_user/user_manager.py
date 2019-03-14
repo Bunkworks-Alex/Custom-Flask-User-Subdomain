@@ -442,30 +442,33 @@ class UserManager(UserManager__Settings, UserManager__Utils, UserManager__Views)
 
         # app.add_url_rule('/callbacks/auth0', 'user.auth0_callback', auth0_callback_stub)
         app.add_url_rule(self.USER_CHANGE_PASSWORD_URL, 'user.change_password', change_password_stub,
-                         methods=['GET', 'POST'])
+                         methods=['GET', 'POST'], subdomain=self.USER_CHANGE_PASSWORD_SUBDOMAIN)
         app.add_url_rule(self.USER_CHANGE_USERNAME_URL, 'user.change_username', change_username_stub,
-                         methods=['GET', 'POST'])
-        app.add_url_rule(self.USER_CONFIRM_EMAIL_URL, 'user.confirm_email', confirm_email_stub)
+                         methods=['GET', 'POST'], subdomain=self.USER_CHANGE_USERNAME_SUBDOMAIN)
+        app.add_url_rule(self.USER_CONFIRM_EMAIL_URL, 'user.confirm_email', confirm_email_stub,
+                         subdomain=self.USER_CONFIRM_EMAIL_SUBDOMAIN)
         app.add_url_rule(self.USER_EDIT_USER_PROFILE_URL, 'user.edit_user_profile', edit_user_profile_stub,
-                         methods=['GET', 'POST'])
-        app.add_url_rule(self.USER_EMAIL_ACTION_URL, 'user.email_action', email_action_stub)
+                         methods=['GET', 'POST'], subdomain=self.USER_EDIT_USER_PROFILE_SUBDOMAIN)
+        app.add_url_rule(self.USER_EMAIL_ACTION_URL, 'user.email_action', email_action_stub,
+                         subdomain=self.USER_EMAIL_ACTION_SUBDOMAIN)
         app.add_url_rule(self.USER_FORGOT_PASSWORD_URL, 'user.forgot_password', forgot_password_stub,
-                         methods=['GET', 'POST'])
+                         methods=['GET', 'POST'], subdomain=self.USER_FORGOT_PASSWORD_SUBDOMAIN)
         app.add_url_rule(self.USER_INVITE_USER_URL, 'user.invite_user', invite_user_stub,
-                         methods=['GET', 'POST'])
+                         methods=['GET', 'POST'], subdomain=self.USER_INVITE_USER_SUBDOMAIN)
         app.add_url_rule(self.USER_LOGIN_URL, 'user.login', login_stub,
-                         methods=['GET', 'POST'])
+                         methods=['GET', 'POST'], subdomain=self.USER_LOGIN_SUBDOMAIN)
         app.add_url_rule(self.USER_LOGOUT_URL, 'user.logout', logout_stub,
-                         methods=['GET', 'POST'])
+                         methods=['GET', 'POST'], subdomain=self.USER_LOGOUT_SUBDOMAIN)
         app.add_url_rule(self.USER_MANAGE_EMAILS_URL, 'user.manage_emails', manage_emails_stub,
-                         methods=['GET', 'POST'])
+                         methods=['GET', 'POST'], subdomain=self.USER_MANAGE_EMAILS_SUBDOMAIN)
         app.add_url_rule(self.USER_REGISTER_URL, 'user.register', register_stub,
-                         methods=['GET', 'POST'])
+                         methods=['GET', 'POST'], subdomain=self.USER_REGISTER_SUBDOMAIN)
         app.add_url_rule(self.USER_RESEND_EMAIL_CONFIRMATION_URL, 'user.resend_email_confirmation',
                          resend_email_confirmation_stub,
-                         methods=['GET', 'POST'])
+                         methods=['GET', 'POST'], subdomain=self.USER_RESEND_EMAIL_CONFIRMATION_SUBDOMAIN)
         app.add_url_rule(self.USER_RESET_PASSWORD_URL, 'user.reset_password', reset_password_stub,
-                         methods=['GET', 'POST'])
+                         methods=['GET', 'POST'], subdomain=self.USER_RESET_PASSWORD_SUBDOMAIN)
+
 
 
 
