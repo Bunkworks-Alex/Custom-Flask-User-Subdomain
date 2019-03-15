@@ -1,10 +1,10 @@
 import sys
 from setuptools import setup
 
-__title__       = 'Flask-User'
+__title__       = 'Custom-Flask-User-Subdomain'
 __description__ = 'Customizable User Authentication & User Management: Register, Confirm, Login, Change username/password, Forgot password and more.'
 __version__     = '1.0.1.5'
-__url__         = 'https://github.com/lingthio/Flask-User'
+__url__         = 'https://github.com/Bunkworks-Alex/Custom-Flask-User-Subdomain/'
 __author__      = 'Ling Thio'
 __author_email__= 'ling.thio@gmail.com'
 __maintainer__  = 'Ling Thio'
