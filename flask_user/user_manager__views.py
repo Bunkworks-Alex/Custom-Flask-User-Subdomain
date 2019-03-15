@@ -169,7 +169,7 @@ class UserManager__Views(object):
             user, user_email = self.db_manager.get_user_and_user_email_by_id(data_items[0])
 
         if not user or not user_email:
-            flash(_('Invalid confirmation token.'), 'error')
+            flash(_('Invalid confirmation token.'), 'danger')
             return redirect(url_for('user.login'))
 
         # Set UserEmail.email_confirmed_at
@@ -320,7 +320,7 @@ class UserManager__Views(object):
             email = invite_user_form.email.data
             user, user_email = self.db_manager.get_user_and_user_email_by_email(email)
             if user:
-                flash("User with that email has already registered", "error")
+                flash("User with that email has already registered", "danger")
                 return redirect(url_for('user.invite_user'))
 
             # Add UserInvitation
@@ -435,7 +435,7 @@ class UserManager__Views(object):
 
         # require invite without a token should disallow the user from registering
         if self.USER_REQUIRE_INVITATION and not invite_token:
-            flash("Registration is invite only", "error")
+            flash("Registration is invite only", "danger")
             return redirect(url_for('user.login'))
 
         user_invitation = None
@@ -446,7 +446,7 @@ class UserManager__Views(object):
                 user_invitation = self.db_manager.get_user_invitation_by_id(user_invitation_id)
 
             if not user_invitation:
-                flash("Invalid invitation token", "error")
+                flash("Invalid invitation token", "danger")
                 return redirect(url_for('user.login'))
 
             register_form.invite_token.data = invite_token
@@ -567,7 +567,7 @@ class UserManager__Views(object):
             self.db_manager.commit()
 
         if not user:
-            flash(_('Your reset password token is invalid.'), 'error')
+            flash(_('Your reset password token is invalid.'), 'danger')
             return redirect(self._endpoint_url('user.login'))
 
 
@@ -607,7 +607,7 @@ class UserManager__Views(object):
         """ Prepare a Flash message and redirect to USER_UNAUTHENTICATED_ENDPOINT"""
         # Prepare Flash message
         url = request.url
-        flash(_("You must be signed in to access '%(url)s'.", url=url), 'error')
+        flash(_("You must be signed in to access '%(url)s'.", url=url), 'danger')
 
         # Redirect to USER_UNAUTHENTICATED_ENDPOINT
         safe_next_url = self.make_safe_url(url)
@@ -618,7 +618,7 @@ class UserManager__Views(object):
         """ Prepare a Flash message and redirect to USER_UNAUTHORIZED_ENDPOINT"""
         # Prepare Flash message
         url = request.script_root + request.path
-        flash(_("You do not have permission to access '%(url)s'.", url=url), 'error')
+        flash(_("You do not have permission to access '%(url)s'.", url=url), 'danger')
 
         # Redirect to USER_UNAUTHORIZED_ENDPOINT
         return redirect(self._endpoint_url(self.USER_UNAUTHORIZED_ENDPOINT))
@@ -667,7 +667,7 @@ class UserManager__Views(object):
 
         # Check if user account has been disabled
         if not user.active:
-            flash(_('Your account has not been enabled.'), 'error')
+            flash(_('Your account has not been enabled.'), 'danger')
             return redirect(url_for('user.login'))
 
         # Check if user has a confirmed email address
@@ -676,7 +676,7 @@ class UserManager__Views(object):
                 and not current_app.user_manager.USER_ALLOW_LOGIN_WITHOUT_CONFIRMED_EMAIL \
                 and not self.db_manager.user_has_confirmed_email(user):
             url = url_for('user.resend_email_confirmation')
-            flash(_('Your email address has not yet been confirmed. Check your email Inbox and Spam folders for the confirmation email or <a href="%(url)s">Re-send confirmation email</a>.', url=url), 'error')
+            flash(_('Your email address has not yet been confirmed. Check your email Inbox and Spam folders for the confirmation email or <a href="%(url)s">Re-send confirmation email</a>.', url=url), 'danger')
             return redirect(url_for('user.login'))
 
         # Use Flask-Login to sign in user
